@@ -1,0 +1,19 @@
+{
+  "name": "phaser-breakout-typescript",
+  "version": "1.0.0",
+  "description": "Simple breakout game made with Phaser.io and Typescript",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "breakout",
+    "phaser",
+    "typescript"
+  ],
+  "author": "Tyler Schwemley",
+  "license": "MIT",
+  "dependencies": {
+    "phaser": "^2.6.2"
+  }
+}
