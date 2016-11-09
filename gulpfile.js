@@ -27,9 +27,9 @@ gulp.task('html', () => {
 });
 
 gulp.task('tsc', () => {
-  let tsProject = tsc.createProject('tsconfig.json');
+  var tsProject = tsc.createProject('tsconfig.json');
 
-  let tsResult = tsProject.src().pipe(tsc(tsProject));
+  var tsResult = tsProject.src().pipe(tsc(tsProject));
 
   return tsResult.js.pipe(gulp.dest('dist/game/'));
 });
@@ -41,7 +41,7 @@ gulp.task('vendor', () => {
 });
 
 gulp.task('minify', () => {
-  let js = gulp.src('dist/**/*.js')
+  var js = gulp.src('dist/**/*.js')
       .pipe(jsMin())
       .pipe(gulp.dest('dist/'));
 
@@ -49,7 +49,7 @@ gulp.task('minify', () => {
 });
     
 gulp.task('watch', () => {
-  let watchHtml = gulp.watch(paths.html, ['html']),
+  var watchHtml = gulp.watch(paths.html, ['html']),
       watchTs   = gulp.watch(paths.ts, ['tsc']),
 
       onChanged = (event) => console.log('File ' + event.path + ' was ' +
