@@ -135,34 +135,22 @@ export class Breakout extends Phaser.State {
   ballHitPaddle(_ball, _paddle) {
     var diff = 0;
 
-    // console.log('ball x: ' + _ball.x);
-    // console.log('paddlw x: ' + _paddle.x);
-    // return;
     if(_ball.x < _paddle.x) 
     {
       // Ball on paddle left
-      console.log('left');
       diff = _paddle.x - _ball.x; 
-      console.log('velocity before: ' + _ball.body.velocity.x);
       _ball.body.velocity.x = (-10 * diff);
-      console.log('velocity after: ' + _ball.body.velocity.x);
     }
     else if(_ball.x > _paddle.x)
     {
       // Ball on paddle right
-      console.log('right');
       diff = _ball.x -_paddle.x;
-      console.log('velocity before: ' + _ball.body.velocity.x);
       _ball.body.velocity.x = (10 * diff);
-      console.log('velocity after: ' + _ball.body.velocity.x);
     }
     else 
     {
-      console.log('middle');
       // Ball perfectly in middle. Add random X to stop bouncing straight up.
-      console.log('velocity before: ' + _ball.body.velocity.x);
       _ball.body.velocity.x = 2 + Math.random() * 8;
-      console.log('velocity after: ' + _ball.body.velocity.x);
     }
   }
 
