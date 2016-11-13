@@ -7,6 +7,8 @@ var gulp = require('gulp'),
 
     tsc  = require('gulp-typescript'),
     jsMin = require('gulp-uglify'),
+
+    imageMin = require('gulp-imagemin'),
     
     paths = {
       vendor: [
@@ -16,16 +18,21 @@ var gulp = require('gulp'),
         'node_modules/systemjs/dist/system-polyfills.js',
         'node_modules/systemjs/dist/system.js'
       ],
+      images: 'src/assets/images/**/*.*',
+      baseAssets: 'src/assets/*.*',
       ts: 'src/**/*.ts',
       html: 'src/**/*.html'
     };
 
+// Delete dist
 gulp.task('clean', () => del('dist/'));
 
+// Copy index.html to dist
 gulp.task('html', () => {
   return gulp.src(paths.html).pipe(gulp.dest('dist/'))
 });
 
+// Compile typescript to js and move to dist
 gulp.task('tsc', () => {
   var tsProject = tsc.createProject('tsconfig.json');
 
@@ -34,10 +41,22 @@ gulp.task('tsc', () => {
   return tsResult.js.pipe(gulp.dest('dist/game/'));
 });
 
+// Create vendor js files
 gulp.task('vendor', () => {
   return gulp.src(paths.vendor)
       .pipe(concat('vendor.js'))
       .pipe(gulp.dest('dist/js/'));
+});
+
+gulp.task('images', () => {
+  return gulp.src(paths.images)
+      .pipe(imageMin())
+      .pipe(gulp.dest('dist/assets/images/'));
+});
+
+gulp.task('base-assets', () => {
+  return gulp.src(paths.baseAssets)
+    .pipe(gulp.dest('dist/assets/'));
 });
 
 gulp.task('minify', () => {
@@ -59,4 +78,4 @@ gulp.task('watch', () => {
   watchTs.on('change', onChanged);
 });
 
-gulp.task('default', ['html', 'tsc', 'vendor']);
+gulp.task('default', ['html', 'tsc', 'vendor', 'images', 'base-assets']);

@@ -2,6 +2,7 @@
 
 // import { Loading } from './states/loading';
 import { Menu } from './states/menu';
+import { Breakout } from './states/breakout';
 // Import additional states here
 
 export class MyGame extends Phaser.Game {
@@ -10,6 +11,7 @@ export class MyGame extends Phaser.Game {
 
         // this.state.add('Loading', Loading);
         this.state.add('Menu', Menu);
+        this.state.add('Breakout', Breakout);
 
         this.state.start('Menu');
     }
