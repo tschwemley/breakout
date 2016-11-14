@@ -4,6 +4,9 @@ export class Menu extends Phaser.State {
   create() {
     var self = this;
 
+    // Enable cursor
+    document.getElementsByTagName('canvas')[0].style.cursor = 'default';
+
     // Make sure only one pointer can be active at a time
     this.game.input.maxPointers = 1;
 

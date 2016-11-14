@@ -15,9 +15,9 @@ export class Breakout extends Phaser.State {
 
   ballOnPaddle: boolean;
 
-  lives: int;
+  lives: number;
   
-  score: int;
+  score: number;
 
   init() {
     this.ballOnPaddle = true;
@@ -31,6 +31,9 @@ export class Breakout extends Phaser.State {
   }
 
   create() {
+    // Disable cursor
+    document.getElementsByTagName('canvas')[0].style.cursor = 'none';
+
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     // Check bound collisons against top, left, right walls
@@ -69,12 +72,6 @@ export class Breakout extends Phaser.State {
     }
   }
 
-  // render() {
-  //   // this.game.debug.inputInfo(32, 32);
-  //   this.game.debug.spriteInfo(this.paddle, 32, 32);
-  //   this.game.debug.spriteInfo(this.ball, 400, 32);
-  // }
-
   releaseBall() {
     if(this.ballOnPaddle)
     { 
@@ -87,7 +84,7 @@ export class Breakout extends Phaser.State {
 
   ballLost() {
     this.lives--;
-    this.livesTest = 'Lives: ' + this.lives;
+    this.livesText.text = 'Lives: ' + this.lives;
 
     if (this.lives === 0)
     {
@@ -118,7 +115,7 @@ export class Breakout extends Phaser.State {
     {
       // New level
       this.score += 1000
-      this.scoreText.text = 'Score: ' + score;
+      this.scoreText.text = 'Score: ' + this.score;
 
       // Move ball back to paddle
       this.ballOnPaddle = true;
